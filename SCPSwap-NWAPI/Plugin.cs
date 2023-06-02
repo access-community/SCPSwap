@@ -37,7 +37,7 @@ namespace SCPSwap_NWAPI
             if (player == null || reason == RoleChangeReason.Destroyed) return;
             if (oldRole.Team == Team.SCPs) return;
             if (newRole.GetTeam() == Team.SCPs && Round.Duration < TimeSpan.FromSeconds(Config.SwapTimeout) && !Config.BlacklistedScps.Contains(newRole))
-                player.SendBroadcast(Messages.StartMessage.Message, Messages.StartMessage.Duration);
+                player.ReceiveHint(Messages.StartMessage.Message, Messages.StartMessage.Duration);
         }
 
         [PluginEvent(ServerEventType.RoundRestart)]

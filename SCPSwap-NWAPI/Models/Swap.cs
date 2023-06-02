@@ -119,7 +119,7 @@ namespace SCPSwap_NWAPI.Models
         /// </summary>
         public void Cancel()
         {
-            Sender.SendBroadcast("Swap request cancelled!", 5, shouldClearPrevious: true);
+            Sender.ReceiveHint(Plugin.Instance.Messages.SwapCancelled.Message, 5);
             Destroy();
         }
         
@@ -128,7 +128,7 @@ namespace SCPSwap_NWAPI.Models
         /// </summary>
         public void Decline()
         {
-            Sender.SendBroadcast($"{Receiver.DisplayNickname ?? Receiver.Nickname} has declined your swap request.", 5, shouldClearPrevious: true);
+            Sender.ReceiveHint($"{Receiver.DisplayNickname ?? Receiver.Nickname} {Plugin.Instance.Messages.RefusedRequest.Message}", 5);
             Destroy();
         }
         
@@ -152,7 +152,7 @@ namespace SCPSwap_NWAPI.Models
             consoleMessage = consoleMessage.Replace("$SenderName", Sender.DisplayNickname ?? Sender.Nickname);
             consoleMessage = consoleMessage.Replace("$RoleName", Sender.Role.ToString());
             Receiver.SendConsoleMessage(consoleMessage, Plugin.Instance.Messages.RequestConsoleMessage.Color);
-            Receiver.SendBroadcast(Plugin.Instance.Messages.RequestBroadcast.Message, Plugin.Instance.Messages.RequestBroadcast.Duration);
+            Receiver.ReceiveHint(Plugin.Instance.Messages.RequestBroadcast.Message, Plugin.Instance.Messages.RequestBroadcast.Duration);
         }
 
         [PluginEvent(ServerEventType.PlayerChangeRole)]
