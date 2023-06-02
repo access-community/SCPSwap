@@ -4,16 +4,21 @@ Currently the CustomSwaps API has been removed. It will be re-added in the futur
 
 DentyTxR's version of the plugin (for EXILED) can be found [here](https://github.com/DentyTxR/ScpSwap).
 
+### Why this fork?
+This remove the dependencies with NWPS permissions plugins
+
 ### Features
 - Allows players to swap between SCP roles with commands
 - Configuration on allowed swap roles, timings and messages
 - <s>API to allow other plugins to integrate into the swap feature</s>
 
+<s>
 ## Permissions
 This plugin requires NWPS permissions to function, you can download it [here](https://github.com/CedModV2/NWAPIPermissionSystem/releases).
 **Do not install it as a depencency, install it as a plugin.**
 - `scpswap.swap` to allow swapping.
 - `scpswap.swap` AND `scpswap.any` to allow swapping to new SCPs.
+</s>
 
 ## Default configuration
 ```yaml

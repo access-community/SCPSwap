@@ -18,19 +18,19 @@ namespace SCPSwap_NWAPI.Commands
             Player playerSender = Player.Get(sender);
             if (playerSender == null)
             {
-                response = "This command must be from the game level.";
+                response = Plugin.Instance.Messages.ShouldRunFromGame.Message;
                 return false;
             }
 
             Swap swap = Swap.FromReceiver(playerSender);
             if (swap == null)
             {
-                response = "You do not have a pending swap request.";
+                response = Plugin.Instance.Messages.NoSwapRequest.Message;
                 return false;
             }
 
             swap.Run();
-            response = "Swap successful!";
+            response = Plugin.Instance.Messages.SwapSuccessful.Message;
             return true;
         }
     }

@@ -16,7 +16,7 @@ namespace SCPSwap_NWAPI.Commands
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             StringBuilder stringBuilder = StringBuilderPool.Shared.Rent();
-            stringBuilder.AppendLine("Available Roles:");
+            stringBuilder.AppendLine(Plugin.Instance.Messages.AvailableRoles.Message);
             stringBuilder.Append(string.Join(Environment.NewLine, ValidSwaps.Names));
             response = StringBuilderPool.Shared.ToStringReturn(stringBuilder);
             return true;

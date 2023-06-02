@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using CommandSystem;
-using NWAPIPermissionSystem;
 using PluginAPI.Core;
 using PlayerRoles;
 using RemoteAdmin;
@@ -33,62 +32,56 @@ namespace SCPSwap_NWAPI.Commands
             Player player = Player.Get((PlayerCommandSender)sender);
             if (player == null)
             {
-                response = "This command must be executed at the game level.";
+                response = Plugin.Instance.Messages.ShouldRunFromGame.Message;
                 return false;
             }
 
             if (!Round.IsRoundStarted)
             {
-                response = "The round has not yet started.";
+                response = Plugin.Instance.Messages.RoundHasNotStarted.Message;
                 return false;
             }
-
-            if (!player.CheckPermission("scpswap.swap"))
-            {
-                response = "You do not have access to this command.";
-                return false;
-            }
-
+            
             if (Round.Duration > TimeSpan.FromSeconds(Plugin.Instance.Config.SwapTimeout))
             {
-                response = "The swap period has ended.";
+                response = Plugin.Instance.Messages.SwapPeriodEnded.Message;
                 return false;
             }
 
             if (arguments.IsEmpty())
             {
-                response = $"Usage: .{Command} ScpNumber";
+                response = $"Usage: .{Command} SCP";
                 return false;
             }
 
             if (player.Team != Team.SCPs)
             {
-                response = "You must be an SCP to use this command.";
+                response = Plugin.Instance.Messages.MustBeAScp.Message;
                 return false;
             }
 
             if (Plugin.Instance.Config.BlacklistedScps.Contains(player.Role))
             {
-                response = "You cannot swap as this SCP.";
+                response = Plugin.Instance.Messages.CannotSwapHasScp.Message;
                 return false;
             }
 
             if (Swap.FromSender(player) != null)
             {
-                response = "You already have a pending swap request!";
+                response = Plugin.Instance.Messages.PendingRequest.Message;
                 return false;
             }
 
             Player receiver = GetReceiver(arguments.At(0), out Action<Player> spawnMethod);
             if (player == receiver)
             {
-                response = "You can't swap with yourself.";
+                response = Plugin.Instance.Messages.CannotSwapSelf.Message;
                 return false;
             }
 
             if (spawnMethod == null)
             {
-                response = "Unable to find the specified role. Please refer to the list command for available roles.";
+                response = Plugin.Instance.Messages.RoleNotFound.Message;
                 return false;
             }
             
@@ -96,22 +89,15 @@ namespace SCPSwap_NWAPI.Commands
             {
                 if (Plugin.Instance.Config.BlacklistedScps.Contains(receiver.Role))
                 {
-                    response = "You cannot swap to this SCP.";
+                    response = Plugin.Instance.Messages.CannotSwap.Message;
                     return false;
                 }
                 Swap.Send(player, receiver);
-                response = "Request sent!";
-                return true;
-            }
-            
-            if (player.CheckPermission("scpswap.any"))
-            {
-                spawnMethod(player);
-                response = "Swap successful.";
+                response = Plugin.Instance.Messages.RequestSent.Message;
                 return true;
             }
 
-            response = "Unable to locate a player with the requested role.";
+            response = Plugin.Instance.Messages.CannotSwap.Message;
             return false;
         }
 
