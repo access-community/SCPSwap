@@ -24,45 +24,43 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
+        <PlatformTarget>x64</PlatformTarget>
         <DebugType>pdbonly</DebugType>
         <Optimize>true</Optimize>
         <OutputPath>bin\Release\</OutputPath>
         <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Assembly-CSharp">
-          <HintPath>..\..\_Dependencies\EXILED-ServerDeps\12.0.2-Exiled.beta-25\Assembly-CSharp-Publicized.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\Assembly-CSharp-Publicized.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp-firstpass">
-          <HintPath>..\..\_Dependencies\EXILED-ServerDeps\12.0.2-Exiled.beta-25\Assembly-CSharp-firstpass.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\Assembly-CSharp-firstpass.dll</HintPath>
         </Reference>
         <Reference Include="CommandSystem.Core">
-          <HintPath>..\..\_Dependencies\EXILED-ServerDeps\12.0.2-Exiled.beta-25\CommandSystem.Core.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\CommandSystem.Core.dll</HintPath>
         </Reference>
         <Reference Include="Mirror">
-          <HintPath>..\..\_Dependencies\EXILED-ServerDeps\12.0.2-Exiled.beta-25\Mirror.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\Mirror.dll</HintPath>
         </Reference>
         <Reference Include="NorthwoodLib">
-          <HintPath>..\..\_Dependencies\EXILED-ServerDeps\12.0.2-Exiled.beta-25\NorthwoodLib.dll</HintPath>
-        </Reference>
-        <Reference Include="NWAPIPermissionSystem">
-          <HintPath>..\..\_Dependencies\NWapi\NWAPIPermissionSystem.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\NorthwoodLib.dll</HintPath>
         </Reference>
         <Reference Include="PluginAPI, Version=12.0.0.0, Culture=neutral, processorArchitecture=Amd64">
-          <HintPath>..\packages\Northwood.PluginAPI.12.0.0\lib\net48\PluginAPI.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\PluginAPI.dll</HintPath>
         </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Xml" />
         <Reference Include="UnityEngine.CoreModule">
-          <HintPath>..\..\_Dependencies\EXILED-ServerDeps\12.0.2-Exiled.beta-25\UnityEngine.CoreModule.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
         <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-          <HintPath>..\packages\YamlDotNet.11.0.1\lib\net45\YamlDotNet.dll</HintPath>
+          <HintPath>$(EXILED_REFERENCES)\YamlDotNet.dll</HintPath>
         </Reference>
     </ItemGroup>
     <ItemGroup>
