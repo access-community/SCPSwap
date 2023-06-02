@@ -77,8 +77,9 @@ namespace SCPSwap_NWAPI
         
         [Description("Error: role not found")] 
         public ConsoleMessage RoleNotFound { get; set; } = new("Unable to find the specified role. Please refer to the list command for available roles.", "red");
-        
-        
-        
+
+        [Description("Error: refused your request")]
+        public ConsoleMessage RefusedRequest { get; set; } = new("has refused your request.", "red");
+
     }
 }
